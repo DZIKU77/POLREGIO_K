@@ -1,0 +1,349 @@
+/* Główne style dokumentu i reset */
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #f1f3f5; /* Dokładne tło aplikacji ze screena */
+}
+
+* {
+    box-sizing: border-box; /* Zapobiega rozjeżdżaniu się marginesów wewnętrznych */
+    font-family: 'Inter', sans-serif;
+}
+
+/* DOLNE MENU (Przyklejone do dołu) */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 65px; /* Przeliczone z Twojego auto */
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    background-color: white;
+    position: fixed; /* Lepsze niż sticky na telefonach dla dolnego menu */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-top: 1px solid #dee2e6;
+    color: #868e96;
+    z-index: 100;
+}
+
+nav img {
+    width: 24px; /* Przeliczone z 70px */
+    height: auto;
+    filter: brightness(1) invert(0.3);
+}
+
+nav #active img {
+    filter: brightness(0.6) invert(0);
+    width: 28px; /* Przeliczone z 90px */
+}
+
+nav #active {
+    color: #dc3545; /* Oryginalna czerwień aplikacji */
+}
+
+nav div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+nav div h2 {
+    font-size: 10px; /* Przeliczone z 1.4em */
+    margin: 0;
+}
+
+/* GÓRNY NAGŁÓWEK (Sticky na samej górze) */
+#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 56px;
+    padding-top: 0px; /* Usunięty gigantyczny padding */
+    padding-bottom: 0px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: #49515a;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+#header h2 {
+    font-size: 17px; /* Przeliczone z 2.5em */
+    color: #f1f3f5;
+    margin: 0;
+    font-weight: 500;
+}
+
+#header img {
+    width: 24px; /* Przeliczone z 70px */
+    height: auto;
+    filter: brightness(0) invert(1);
+}
+
+#header h3 {
+    font-size: 14px; /* Przeliczone z 2em */
+    color: #dbdbdb;
+    margin: 0;
+    font-weight: 700;
+}
+
+#header div {
+    display: flex;
+    align-items: center;
+}
+
+/* Szary podtytuł */
+#info {
+    font-size: 12px; /* Przeliczone z 2em */
+    color: #868e96;
+    margin: 0;
+    padding: 10px 15px;
+    text-align: center;
+    background-color: #e9ecef;
+    position: sticky;
+    top: 56px;
+    z-index: 9;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* SEKCJA Z KODEM QR */
+#qr-code {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    flex-direction: column;
+    padding-top: 10px;
+    width: 100%;
+    margin-bottom: 20px;
+    font-weight: 100;
+}
+
+.zoomable-img {
+    width: 240px; /* Przeliczone z 650px - idealny kwadrat mobilny */
+    max-width: 90%; /* Dostosowuje się do szerokości ekranu */
+    transition: transform 0.3s ease; /* Płynne powiększanie */
+    cursor: pointer; /* Zmienia kursor na wskaźnik */
+}
+
+.zoomable-img.zoomed {
+    transform: scale(1.2); /* Powiększenie 2x */
+    z-index: 1000; /* Na wierzchu */
+    position: relative; /* Aby nie przesłaniało innych elementów */
+}
+
+/* NUMER BILETU */
+#ticket-number {
+    font-size: 19px; /* Przeliczone z 3em */
+    color: black;
+    margin: 10px 0 25px 0;
+    text-align: center;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+/* KONTENER NA TABELĘ I DANE */
+#val {
+    padding: 0 15px 85px 15px; /* Dodany dolny margines, by menu nie zasłaniało tabeli */
+    display: flex;
+    flex-direction: column;
+}
+
+#kontakt {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12.5px; /* Przeliczone z 1.8em */
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-bottom: 12px;
+    color: #000000;
+}
+
+/* CZARNA TABELA */
+#tabela {
+    border: 1px solid black;
+    background: white;
+    width: 100%;
+}
+
+#tabela #sekcja1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
+    height: auto;
+    padding: 10px 0;
+}
+
+#sekcja1a {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    flex: 2.3;
+}
+
+#sekcja1a h2 {
+    font-size: 13.5px; /* Przeliczone z 2.1em */
+    margin-bottom: 5px;
+    margin-top: 0px;
+    font-weight: 700;
+}
+
+#sekcja1a p {
+    margin-top: 0px;
+    margin-bottom: 5px;
+    font-size: 13px; /* Przeliczone z 1.8em */
+    font-weight: 400;
+}
+
+#sekcja1b {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    font-size: 12.5px; /* Przeliczone z 1.8em */
+    flex: 1;
+    text-align: right;
+}
+
+#sekcja1b strong {
+    font-weight: 700;
+}
+
+#sekcja2 {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+    height: auto;
+    padding: 10px;
+}
+
+#sekcja2 h2 {
+    font-size: 11px;
+    margin-top: 0px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+#sekcja2 p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1.4;
+    flex: 2.3;
+}
+
+.tabela-prawa-klasa { /* Klasa dla elementu POC. R KL.2 */
+    flex: 1;
+    text-align: right;
+    font-weight: 700;
+    font-size: 13px;
+}
+
+#sekcja3 {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    padding: 12px 10px;
+    border-bottom: 1px solid black;
+}
+
+#sekcja3 * {
+    margin: 0px;
+    padding: 0px;
+}
+
+#sekcja3 p {
+    font-size: 13px;
+    font-weight: 400;
+    margin-bottom: 4px;
+}
+
+#sekcja3 h1 {
+    font-size: 17px; /* Przeliczone z 3em (Sebastian Bednarz) */
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+#sekcja3 h2 {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.3;
+    color: #000000;
+}
+
+#sekcja4 {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+#sekcja4 h2 {
+    font-size: 13px;
+    font-weight: 400;
+}
+
+#sekcja4 h1 {
+    font-size: 13px;
+    font-weight: 700;
+    margin-top: 2px;
+}
+
+#sekcja5 {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    padding: 10px;
+}
+
+#sekcja5 h2 {
+    font-size: 13px;
+    font-weight: 400;
+    margin: 2px 0;
+}
+
+#sekcja5 .price {
+    font-weight: 700;
+    font-size: 14px; /* TOTAL jest delikatnie większy */
+}
+
+#sekcja5 p {
+    margin-top: 4px;
+    margin-bottom: 0px;
+    font-size: 11.5px;
+    font-weight: 400;
+    color: #495057;
+}
+
+/* SEKCJE Z PŁATNOŚCIAMI I METRYKĄ */
+#sekcja6 {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+#sekcja6 p {
+    margin-top: 4px;
+    margin-bottom: 0px;
+    font-size: 12.5px;
+    font-weight: 400;
+    color: #495057;
+    line-height: 1.4;
+}
+
+#sekcja6 h2 {
+    font-size: 13px;
+    margin-top: 25px;
+    margin-bottom: 5px;
+    font-weight: 400;
+    font-style: italic; /* mPOLREGIO pisane kursywą */
+}

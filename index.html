@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="loginStyle.css">
+  <link rel="manifest" href="manifest.json">
+  <title>Automatyczny Generator Biletów</title>
+</head>
+<body>
+
+  <h2>Twój bilet MPK</h2>
+  
+  <form id="formularzBiletu">
+    <button type="submit">Generuj bilet na obecny miesiąc</button>
+  </form>
+
+  <script>
+    const formularz = document.getElementById('formularzBiletu');
+
+    formularz.addEventListener('submit', (event) => {
+      event.preventDefault(); // Blokujemy odświeżanie strony
+
+      // 1. Pobieramy AKTUALNĄ datę z systemu użytkownika
+      const dzis = new Date();
+      
+      // 2. Wyciągamy obecny rok i miesiąc (w JS miesiące są od 0 do 11, stąd +1)
+      const obecnyMiesiacNum = dzis.getMonth() + 1; 
+      let obecnyRok = dzis.getFullYear();
+
+      // 3. Obliczamy następny miesiąc i rok
+      let nastepnyMiesiacNum = obecnyMiesiacNum + 1;
+      let nastepnyRok = obecnyRok;
+
+      // KLUCZOWY WARUNEK: Jeśli obecny miesiąc to Grudzień (12), 
+      // to następny to Styczeń (01), ale ROK idzie w górę!
+      if (obecnyMiesiacNum === 12) {
+        nastepnyMiesiacNum = 1;
+        nastepnyRok = obecnyRok + 1;
+      }
+
+      // 4. Formatujemy numery miesięcy do postaci dwucyfrowej (np. 6 -> "06")
+      const obecnyMM = String(obecnyMiesiacNum).padStart(2, '0');
+      const nastepnyMM = String(nastepnyMiesiacNum).padStart(2, '0');
+
+      // 5. Składamy gotowe daty (zawsze od 1. dnia miesiąca)
+      const dataOd = `01.${obecnyMM}.${obecnyRok}`;
+      const dataDo = `01.${nastepnyMM}.${nastepnyRok}`;
+
+      // Podgląd w konsoli:
+      // Jeśli dzisiaj byłby grudzień 2026, dostaniesz: "01.12.2026" i "01.01.2027"
+      console.log("Bilet ważny OD:", dataOd); 
+      console.log("Bilet ważny DO:", dataDo); 
+
+      // 6. Przesyłamy gotowe daty do drugiego pliku
+      window.location.href = `bilet.html?dataOd=${dataOd}&dataDo=${dataDo}`;
+    });
+
+    if('serviceWorker' in navigator){
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').then(reg => console.log('Działa!')).catch(err => console.log('Nie działa!: ', err));
+      })
+    }
+  </script>
+
+</body>
+</html>

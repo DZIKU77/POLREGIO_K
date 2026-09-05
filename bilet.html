@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Zintegrowany Bilet</title>
+  <link rel="stylesheet" href="biletStyle.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <section id="header">
+    <div>
+        <img src="left.png" alt="Logo MPK">
+        <h2>Back</h2>
+    </div>
+    <h3>Season ticket</h3>
+    <img src="ticket.png" alt="Logo MPK">
+  </section>
+  <h3 id="info">Zintegrowany Bilet Pociąg + Autobus (II strefa kolej...</h3>
+  <section id="qr-code">
+    <img src="image.png" alt="QR Code" class="zoomable-img">
+  </section>
+    <p id="ticket-number">Ba28112764</p>
+
+  <section id="val">
+    <div id="kontakt">
+        <div>
+            <p>POLREGIO S.A. ul. Kolejowa 1, <br> 01-217 Warszawa</p>
+        </div>
+        <div>
+            <p>www.polregio.pl<br>Dobrej podróży!</p>
+        </div>
+    </div>
+    <div id="tabela">
+        <div id="sekcja1">
+            <div id="sekcja1a" class="sekcja">
+                <h2>ZINTEGROWANY BILET (392)</h2>
+                <p>Wyjazd dnia: <span id="dataOd"></span></p>
+                <p>Ważny do: <span id="dataDo"></span></p>
+            </div>
+            <div id="sekcja1b" class="sekcja">
+                <p>
+                    Normalny: 0 <br>
+                    Ulgowy (76): 1 <br>
+                    DZ/UCZ 49%
+                </p>
+            </div>            
+        </div>
+        <div id="sekcja2" class="sekcja">
+            <h2>
+                'Zintegrowany Bilet Pociąg + Autobus' <br>
+                ważny w II strefie kolejowej <br>
+                oraz w środkach komunikacji miejskiej <br>
+                ZTM Rzeszów
+            </h2>
+            <p>POC. R KL.2</p>
+        </div>
+        <div id="sekcja3" class="sekcja">
+            <h2>Właściciel biletu:</h2>
+            <h1>Karol Rutyna</h1>
+            <p>Bilet ważny z dokumentem ze zdjęciem potwierdzającym <br> tożsamość podróżnego.</p>
+        </div>
+        <div id="sekcja4" class="sekcja">
+            <h2>Przewoźnik:</h2>
+            <h1>POLREGIO</h1>
+        </div>
+        <div id="sekcja5" class="sekcja">
+            <h2>Travel charge: <span class="price">112,20 zł</span></h2>
+            <h2>TOTAL: <span class="price">112,20 zł</span></h2>
+            <p>including PTU B(8%): 8,31 zł</p>
+        </div>
+        <div id="sekcja6" class="sekcja">
+            <p>Payment No.: 138723691 (Płatność przelewem)</p>
+            <p>Wystawiono dnia: 5:00 <span id="dataOd"></span></p>
+            <h2><i>m</i>POLREGIO</h2>
+        </div>
+    </div>
+  </section>
+      <nav>
+        <div>
+            <img src="magnifying-glass.png" alt="Search">
+            <h2>Search</h2>
+        </div>
+        <div>
+            <img src="price-tag.png" alt="Account">
+            <h2>Account</h2>
+        </div>
+        <div id="active">
+            <img src="ticket2.png" alt="Ticket">
+            <h2>My Tickets</h2>
+        </div>
+        <div>
+            <img src="information.png" alt="informations">
+            <h2>Informations</h2>
+        </div>
+        <div>
+            <img src="internet.png" alt="stacje">
+            <h2>Stacje</h2>
+        </div>
+    </nav>
+  <script>
+    const parametry = new URLSearchParams(window.location.search);
+    const dataOd = parametry.get('dataOd');
+    const dataDo = parametry.get('dataDo');
+    const dataOdElement = document.querySelectorAll('#dataOd');
+    const dataDoElement = document.getElementById('dataDo');
+
+    const images = document.querySelectorAll('.zoomable-img');
+    images.forEach(image => {
+        image.addEventListener('dblclick', function(e) {
+            e.preventDefault(); // Zapobiega domyślnemu zachowaniu (np. zaznaczaniu tekstu)
+            this.classList.toggle('zoomed');
+        });
+    });
+
+    dataOdElement.forEach(element => {
+        element.textContent = dataOd;
+    });
+    dataDoElement.textContent = dataDo;
+  </script>
+</body>
+</html>
