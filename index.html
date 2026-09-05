@@ -8,9 +8,12 @@
 </head>
 <body>
 
-  <h2>Twój bilet MPK</h2>
+  <h2>Twój <br> bilet <br> MPK</h2>
   
   <form id="formularzBiletu">
+    <!-- DODANO INPUT DLA IMIENIA I NAZWISKA -->
+    <input type="text" id="ImieNaz" placeholder="Imię i nazwisko" required><br>
+
     <button type="submit">Generuj bilet na obecny miesiąc</button>
   </form>
 
@@ -19,6 +22,9 @@
 
     formularz.addEventListener('submit', (event) => {
       event.preventDefault(); // Blokujemy odświeżanie strony
+
+      // POBIERAMY WARSZOŚĆ Z INPUTA "ImieNaz"
+      const ImieNaz = document.getElementById('ImieNaz').value;
 
       // 1. Pobieramy AKTUALNĄ datę z systemu użytkownika
       const dzis = new Date();
@@ -51,8 +57,8 @@
       console.log("Bilet ważny OD:", dataOd); 
       console.log("Bilet ważny DO:", dataDo); 
 
-      // 6. Przesyłamy gotowe daty do drugiego pliku
-      window.location.href = `bilet.html?dataOd=${dataOd}&dataDo=${dataDo}`;
+      // 6. Przesyłamy zmienną ImieNaz oraz gotowe daty do drugiego pliku
+      window.location.href = `bilet.html?ImieNaz=${encodeURIComponent(ImieNaz)}&dataOd=${dataOd}&dataDo=${dataDo}`;
     });
 
     if('serviceWorker' in navigator){

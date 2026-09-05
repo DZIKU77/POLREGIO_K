@@ -60,7 +60,7 @@
         </div>
         <div id="sekcja3" class="sekcja">
             <h2>Właściciel biletu:</h2>
-            <h1>Karol Rutyna</h1>
+            <h1 id="ImieNazwisko"></h1>
             <p>Bilet ważny z dokumentem ze zdjęciem potwierdzającym <br> tożsamość podróżnego.</p>
         </div>
         <div id="sekcja4" class="sekcja">
@@ -103,23 +103,37 @@
     </nav>
   <script>
     const parametry = new URLSearchParams(window.location.search);
+
     const dataOd = parametry.get('dataOd');
     const dataDo = parametry.get('dataDo');
+    const ImieNaz = parametry.get('ImieNaz');
+
     const dataOdElement = document.querySelectorAll('#dataOd');
     const dataDoElement = document.getElementById('dataDo');
+    const ImNazOutput = document.getElementById("ImieNazwisko");
 
+    // Wstawienie imienia i nazwiska do h2
+    if (ImNazOutput && ImieNaz) {
+    ImNazOutput.textContent = ImieNaz;
+    }
+
+    // Obsługa obrazków
     const images = document.querySelectorAll('.zoomable-img');
     images.forEach(image => {
-        image.addEventListener('dblclick', function(e) {
-            e.preventDefault(); // Zapobiega domyślnemu zachowaniu (np. zaznaczaniu tekstu)
-            this.classList.toggle('zoomed');
-        });
+    image.addEventListener('dblclick', function(e) {
+        e.preventDefault();
+        this.classList.toggle('zoomed');
+    });
     });
 
+    // Wstawienie dat
     dataOdElement.forEach(element => {
-        element.textContent = dataOd;
+    element.textContent = dataOd;
     });
+
+    if (dataDoElement) {
     dataDoElement.textContent = dataDo;
+    }
   </script>
 </body>
 </html>
